@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>upload</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	</head>
+	<body>
+		<div id="dv"><img src="upload/default.png" class="img-circle" style="width: 140px;height: 140px;"/></div>
+		<div class="bg-info">
+		<form action="action" method="post" enctype="multipart/form-data" id="myForm">
+			<input type="file" name="file" /><br />
+			<input type="button" value="上传" id="bt" class="btn-group-lg btn-success"/>
+		</form>
+		</div>
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jquery.form.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script>
+		$(function(){
+			    $("#bt").click(function() { 
+			    	var formData = new FormData($("#myForm")[0]);
+			    	$.ajax({
+						url: "action",
+						data:formData,
+						type: "post",
+						contentType: false,
+						processData: false,
+						async: true, //异步请求
+						cache: false, //是否缓存
+						success: function(data) {
+						    $("#dv").html("<img src='upload/"+data+"'"+" class='img-circle'"+"  style='width: 140px;height: 140px;'/>");
+						},
+						error: function(jqXHR, textStatus, errorThrown){
+						}
+						});
+						        });  
+								});
+		</script>
+	</body>
+</html>
